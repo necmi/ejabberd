@@ -94,6 +94,7 @@ RUN touch /var/log/ejabberd/crash.log /var/log/ejabberd/error.log /var/log/ejabb
 # Wrapper for setting config on disk from environment
 # allows setting things like XMPP domain at runtime
 ADD ./run.sh /sbin/run
+RUN chmod +x /sbin/run
 
 # Add run scripts
 ADD ./scripts $EJABBERD_HOME/scripts
