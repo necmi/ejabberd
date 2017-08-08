@@ -54,7 +54,7 @@ RUN set -x \
         --keyserver keys.gnupg.net \
         --recv-keys 434975BD900CCBE4F7EE1B1ED208507CA14F4FCA \
     && apt-get update \
-    && apt-get install -y -t jessie-backports $buildDeps $requiredAptPackages --no-install-recommends \
+    && apt-get install -t jessie-backports --no-install-recommends $buildDeps $requiredAptPackages -y \
     && dpkg-reconfigure locales && \
         locale-gen C.UTF-8 \
     && /usr/sbin/update-locale LANG=C.UTF-8 \
@@ -97,7 +97,7 @@ ADD ./run.sh /sbin/run
 
 # Add run scripts
 ADD ./scripts $EJABBERD_HOME/scripts
-#ADD https://raw.githubusercontent.com/rankenstein/ejabberd-auth-mysql/master/auth_mysql.py $EJABBERD_HOME/scripts/lib/auth_mysql.py
+ADD https://raw.githubusercontent.com/rankenstein/ejabberd-auth-mysql/master/auth_mysql.py $EJABBERD_HOME/scripts/lib/auth_mysql.py
 RUN chmod +x -R $EJABBERD_HOME/scripts/*
 
 # Add config templates
