@@ -51,7 +51,7 @@ RUN set -x \
         imagemagick \
     ' \
     && apt-key adv \
-        --keyserver keys.gnupg.net \
+        --keyserver hkp://keys.gnupg.net:80 \
         --recv-keys 434975BD900CCBE4F7EE1B1ED208507CA14F4FCA \
     && apt-get update \
     && apt-get install -t jessie-backports --no-install-recommends $buildDeps $requiredAptPackages -y \
