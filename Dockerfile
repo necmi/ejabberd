@@ -21,6 +21,8 @@ RUN groupadd -r $EJABBERD_USER \
        -d $EJABBERD_HOME \
        $EJABBERD_USER
 
+RUN echo "deb http://ftp.debian.org/debian jessie-backports contrib main" >> /etc/apt/sources.list
+
 # Install packages and perform cleanup
 RUN set -x \
     && buildDeps=' \
@@ -41,7 +43,7 @@ RUN set -x \
         python-jinja2 \
         ca-certificates \
         libyaml-0-2 \
-        erlang-base erlang-snmp erlang-ssl erlang-ssh erlang-webtool \
+        erlang-base erlang-snmp erlang-ssl erlang-ssh \
         erlang-tools erlang-xmerl erlang-corba erlang-diameter erlang-eldap \
         erlang-eunit erlang-ic erlang-odbc erlang-os-mon \
         erlang-parsetools erlang-percept erlang-typer \
@@ -52,7 +54,7 @@ RUN set -x \
         --keyserver keys.gnupg.net \
         --recv-keys 434975BD900CCBE4F7EE1B1ED208507CA14F4FCA \
     && apt-get update \
-    && apt-get install -y $buildDeps $requiredAptPackages --no-install-recommends \
+    && apt-get install -y -t jessie-backports $buildDeps $requiredAptPackages --no-install-recommends \
     && dpkg-reconfigure locales && \
         locale-gen C.UTF-8 \
     && /usr/sbin/update-locale LANG=C.UTF-8 \
