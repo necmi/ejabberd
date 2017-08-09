@@ -84,7 +84,7 @@ RUN set -x \
     && rm -rf /usr/local/etc/ejabberd \
     && ln -sf $EJABBERD_HOME/conf /usr/local/etc/ejabberd \
     && chown -R $EJABBERD_USER: $EJABBERD_HOME \
-    && chown -R $EJABBERD_USER: /opt/ejabberd/database/
+    && chown -R $EJABBERD_USER: /opt/ejabberd/database/ \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get purge -y --auto-remove $buildDeps
 
