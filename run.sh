@@ -6,6 +6,8 @@ source "${EJABBERD_HOME}/scripts/lib/config.sh"
 source "${EJABBERD_HOME}/scripts/lib/base_functions.sh"
 source "${EJABBERD_HOME}/scripts/lib/functions.sh"
 
+chown -R $EJABBERD_USER: /opt/ejabberd/database/
+
 # discover hostname
 readonly nodename=$(get_nodename)
 
